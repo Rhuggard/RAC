@@ -7,7 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div id='action_bar'>
+<% if session[:user_id] %>
+<%= button_to 'Logout', logout_path, method: :delete %>
+<% end %>
+</div>
 <%= yield %>
 
 </body>
