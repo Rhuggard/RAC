@@ -1,0 +1,23 @@
+<h1>Listing pobjects</h1>
+
+<table>
+  <tr>
+    <th>Uri</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pobjects.each do |pobject| %>
+  <tr>
+    <td><%= pobject.uri %></td>
+    <td><%= link_to 'Show', pobject %></td>
+    <td><%= link_to 'Edit', edit_pobject_path(pobject) %></td>
+    <td><%= link_to 'Destroy', pobject, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pobject', new_pobject_path %>

@@ -1,4 +1,6 @@
 ThesisPOC::Application.routes.draw do
+  resources :pobjects
+
   get "admin" => "admin#index"
     
   controller :sessions do

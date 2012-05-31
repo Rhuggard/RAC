@@ -1,0 +1,21 @@
+<%= form_for(@pobject) do |f| %>
+  <% if @pobject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pobject.errors.count, "error") %> prohibited this pobject from being saved:</h2>
+
+      <ul>
+      <% @pobject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :uri %><br />
+    <%= f.text_field :uri %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
