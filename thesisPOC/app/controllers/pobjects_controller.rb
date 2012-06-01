@@ -42,7 +42,7 @@ class PobjectsController < ApplicationController
   # POST /pobjects.json
   def create
     @pobject = Pobject.create(params[:pobject])
-
+    @pobject.owner = @user_name
     respond_to do |format|
       if @pobject.save
         format.html { redirect_to @pobject, notice: 'Pobject was successfully created.' }
