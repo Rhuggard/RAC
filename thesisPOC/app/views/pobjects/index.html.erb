@@ -10,6 +10,7 @@
 
 <% @pobjects.each do |pobject| %>
   <tr>
+    <td><%= image_tag pobject.avatar.url(:thumb) %></td>
     <td><%= pobject.uri %></td>
     <td><%= link_to 'Show', pobject %></td>
     <td><%= link_to 'Edit', edit_pobject_path(pobject) %></td>
