@@ -1,4 +1,5 @@
 class PobjectsController < ApplicationController
+  skip_before_filter :authorize
   # GET /pobjects
   # GET /pobjects.json
   def index
@@ -40,7 +41,7 @@ class PobjectsController < ApplicationController
   # POST /pobjects
   # POST /pobjects.json
   def create
-    @pobject = Pobject.new(params[:pobject])
+    @pobject = Pobject.create(params[:pobject])
 
     respond_to do |format|
       if @pobject.save

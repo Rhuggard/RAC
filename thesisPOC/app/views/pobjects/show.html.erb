@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
-
+<%if false%>
 <p>
   <b>Uri:</b>
   <%= @pobject.uri %>
+  <%= image_tag @pobject.avatar.url %>
+  <%= image_tag @pobject.avatar.url(:medium) %>
+  <%= image_tag @pobject.avatar.url(:thumb) %>
 </p>
-
+<%end%>
 
 <%= link_to 'Edit', edit_pobject_path(@pobject) %> |
 <%= link_to 'Back', pobjects_path %>
