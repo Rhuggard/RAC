@@ -1,5 +1,4 @@
 class PobjectsController < ApplicationController
-  before_filter :authorize
   # GET /pobjects
   # GET /pobjects.json
   def index
