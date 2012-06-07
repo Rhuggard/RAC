@@ -1,0 +1,27 @@
+<h1>Listing policies</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Action</th>
+    <th>Object</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @policies.each do |policy| %>
+  <tr>
+    <td><%= policy.user_id %></td>
+    <td><%= policy.action %></td>
+    <td><%= policy.object_id %></td>
+    <td><%= link_to 'Show', policy %></td>
+    <td><%= link_to 'Edit', edit_policy_path(policy) %></td>
+    <td><%= link_to 'Destroy', policy, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Policy', new_policy_path %>

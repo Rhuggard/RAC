@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @policy.user_id %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @policy.action %>
+</p>
+
+<p>
+  <b>Object:</b>
+  <%= @policy.object_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_policy_path(@policy) %> |
+<%= link_to 'Back', policies_path %>
