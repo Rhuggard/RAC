@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>Name</th>
     <th>Password digest</th>
     <th></th>
@@ -11,6 +12,7 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= user.id %></td>
     <td><%= user.name %></td>
     <td><%= user.password_digest %></td>
     <td><%= link_to 'Show', user %></td>
