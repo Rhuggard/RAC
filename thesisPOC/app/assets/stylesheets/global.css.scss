@@ -1,0 +1,47 @@
+body {
+  background-image: url("/assets/white_leather.png");
+  height: 100%
+}
+
+#title_bar {
+text-align:center;
+ h1{
+   font-size: 40px;
+ }
+}
+
+#action_bar {
+text-align:center;
+}
+
+#layout_container{
+display: block;
+width:100%;
+height: 90%;
+}
+
+#left_spacer{
+float: left;
+width: 20%;
+height: 100px;
+}
+
+#content{
+float:left;
+width: 60%;
+}
+
+#right_spacer{
+float: right;
+width: 20%;
+height: 100px;
+}
+
+#footer{
+clear:both;
+text-align:center;
+width:100%;
+height:10%;
+}
+
+

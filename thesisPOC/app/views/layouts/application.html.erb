@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ThesisPOC</title>
+  <title>Access Control Web Interface</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id='title_bar'>
+<h1>Access Control Web Interface</h1>
+</div>
 <div id='action_bar'>
 <% if session[:user_id] %>
 <p> Welcome <%= @user_name %>. You are currently logged in.</p>
 <%= button_to 'Logout', logout_path, method: :delete %>
 <% end %>
 </div>
-<%= yield %>
 
+<div id='layout_container'>
+  <div id='left_spacer'>
+  </div>
+
+  <div id='content'>
+    <%= yield %>
+  </div>
+
+  <div id='right_spacer'>
+  </div>
+</div>
+  <div id='footer'>
+    <p>Copyright Ronan Thomas Huggard 2012</p>
+  </div>
 </body>
 </html>
