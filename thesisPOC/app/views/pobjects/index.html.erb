@@ -13,7 +13,7 @@
     <td><%= image_tag pobject.avatar.url(:thumb) %></td>
     <td><%= pobject.uri %></td>
     <td><%= pobject.owner %>
-    <td><%= link_to 'Show', pobject %></td>
+    <td><%= link_to 'Show', pobject, confirm: "foo: #{@message}" %></td>
     <td><%= link_to 'Edit', edit_pobject_path(pobject) %></td>
     <td><%= link_to 'Destroy', pobject, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

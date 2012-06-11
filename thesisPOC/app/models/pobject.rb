@@ -6,4 +6,9 @@ class Pobject < ActiveRecord::Base
     current_id = User.where(:name => 'user2').first
     Policy.create!(:user_id => current_id.id, :action => 'view', :object_id => id)
   end
+public
+  def self.check_permission(subject_id,action,pobject_id)
+    #only need one 
+    Policy.where(:user_id => subject_id,:action => action, :object_id => pobject_id).first 
+  end
 end

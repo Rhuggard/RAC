@@ -3,6 +3,11 @@ class PobjectsController < ApplicationController
   # GET /pobjects.json
   def index
     @pobjects = Pobject.all
+    if Pobject.check_permission(1,'view',2)
+    @message = 'access for 1 view 2'
+    else
+    @message = 'no'
+    end
 
     respond_to do |format|
       format.html # index.html.erb
