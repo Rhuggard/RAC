@@ -10,12 +10,6 @@ class PobjectsController < ApplicationController
         pobject.access = false
       end
     end
-    pobject_id = 2
-    if Pobject.check_permission(session[:user_id],'view',pobject_id)
-    @message = "access granted for #{session[:user_id]} view #{pobject_id}"
-    else
-    @message = 'access denied'
-    end
 
     respond_to do |format|
       format.html # index.html.erb
