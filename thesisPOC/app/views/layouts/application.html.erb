@@ -10,6 +10,34 @@
 <div id='title_bar'>
 <h1>Access Control Web Interface</h1>
 </div>
+<% if session[:user_id] %>
+<div id='message_bar'>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> 
+<script src="http://localhost:8080/nowjs/now.js"></script>
+
+<script>
+$(document).ready(function(){
+  
+  now.name = prompt("What's your name?", "");  
+  now.receiveMessage = function(name, message){
+    $("#messages").append("<br>" + name + ": " + message);
+  }
+  
+  $("#send-button").click(function(){
+    now.distributeMessage($("#text-input").val());
+    $("#text-input").val("");
+  });
+  
+});
+</script>
+</head> 
+ 
+<body> 
+<div id="messages"></div>
+<input type="text" id="text-input">
+<input type="button" value="Send" id="send-button"></p>
+</div>
+<% end %>
 <div id='action_bar'>
 <% if session[:user_id] %>
 <p> Welcome <%= @user_name %>. You are currently logged in.</p>
