@@ -8,3 +8,7 @@ var everyone = nowjs.initialize(server);
 everyone.now.distributeMessage = function(message){
   everyone.now.receiveMessage(this.now.name, message);
 };
+
+
+
+

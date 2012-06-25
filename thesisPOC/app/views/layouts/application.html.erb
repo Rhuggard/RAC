@@ -15,9 +15,40 @@
 <script src="http://localhost:8080/nowjs/now.js"></script>
 
 <script>
-$(document).ready(function(){
-  
-  now.name = '<%= @user_name %>';  
+
+var dropDown = null;
+
+function appendForm(){
+$("#dropdown").append("<p>Extra Information:<br />\
+<form name=\"frm1\" action=\"\" onsubmit=\"return request()\">\
+<textarea rows = 5 cols=40 name=\"message\" wrap=virtual>\
+</textarea>\
+<br />\
+<input type=\"submit\" value=\"Submit\" />\
+</form>\
+</div>\
+</p>");
+}
+
+function doMove() {
+  offset = parseInt(dropDown.style.height)+10;
+  dropDown.style.height = offset +'px'; //ugly
+  if(offset < 200){
+    setTimeout(doMove,5); // call doMove in 5msec
+  } else {
+    appendForm();
+  }
+}
+
+function init() {
+  dropDown = document.getElementById('dropdown'); // get the "foo" object
+  dropDown.style.height = '0px'; 
+  dropDown.style.background = '#FFB92A';
+  doMove(); // start animating
+  setupMessageing();
+}
+
+function setupMessageing(){
   now.receiveMessage = function(name, message){
     $("#messages").append("<br>" + name + ": " + message);
   }
@@ -26,14 +57,29 @@ $(document).ready(function(){
     now.distributeMessage($("#text-input").val());
     $("#text-input").val("");
   });
-  
+}
+
+$(document).ready(function(){
+  init();
+  now.name = '<%= @user_name %>';  
+  setupMessageing();
 });
+
+function request()
+{
+  dropDown = document.getElementById('dropdown'); // get the "foo" object
+  dropDown.style.background = '#00FF00';
+  $("#dropdown").append("<p>" + 'REQUEST SENT' + "</p>");
+  
+  alert("Welcome " + document.forms["frm1"]["message"].value + "!!")
+  
+return false;
+}
 </script>
  
 <body> 
 <div id="messages"></div>
-<input type="text" id="text-input">
-<input type="button" value="Send" id="send-button"></p>
+<div id="dropdown">
 </div>
 <% end %>
 <div id='action_bar'>
