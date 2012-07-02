@@ -24,7 +24,7 @@ $("#dropdown").append("<p>Extra Information:<br />\
 <textarea rows = 5 cols=40 name=\"message\" wrap=virtual>\
 </textarea>\
 <br />\
-<input type=\"submit\" value=\"Submit\" />\
+<input type=\"submit\" value=\"Request\" />\
 </form>\
 </div>\
 </p>");
@@ -52,28 +52,41 @@ function setupMessageing(){
   now.receiveMessage = function(name, message){
     $("#messages").append("<br>" + name + ": " + message);
   }
-  
-  $("#send-button").click(function(){
-    now.distributeMessage($("#text-input").val());
-    $("#text-input").val("");
-  });
+ 
+  now.requestStack = function(message){
+    alert('request recieved!!');
+    $("#messages").append("<br>" + "request: " + message);
+  }
+}
+
+function setupRequests(){
+  now.receiveRequest = function(name,message){
+    $("#messages").append("<br>A request from " + name + ": " + message);
+  }
 }
 
 $(document).ready(function(){
   init();
   now.name = '<%= @user_name %>';  
   setupMessageing();
+  setupRequests();
 });
 
 function request()
 {
   dropDown = document.getElementById('dropdown'); // get the "foo" object
   dropDown.style.background = '#00FF00';
+  now.distributeMessage('foooooo');
   $("#dropdown").append("<p>" + 'REQUEST SENT' + "</p>");
-  
-  alert("Welcome " + document.forms["frm1"]["message"].value + "!!")
-  
-return false;
+  alert("Welcome " + document.forms["frm1"]["message"].value + "!!");
+  return false;
+}
+
+function sendRequest(target, pobject){
+  //put up form and populate message
+  alert('woot');
+  message = 'hi there I need this for the project!';
+  now.sendRequest(target,pobject,message);
 }
 </script>
  

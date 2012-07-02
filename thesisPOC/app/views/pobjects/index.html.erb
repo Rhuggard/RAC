@@ -16,7 +16,7 @@
     <% if pobject.access %>
     <td><%= link_to 'Show', pobject %></td>
     <% else %>
-    <td><%= link_to 'Request Access', pobject %></td>
+    <td><a href="javascript:void(0)" onclick="sendRequest('<%= pobject.owner %>',<%= pobject.id %>)">request access</a></td>
     <% end %>
     <td><%= link_to 'Edit', edit_pobject_path(pobject) %></td>
     <td><%= link_to 'Destroy', pobject, confirm: 'Are you sure?', method: :delete %></td>
