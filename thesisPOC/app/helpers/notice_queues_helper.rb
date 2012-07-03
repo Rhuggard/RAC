@@ -1,0 +1,2 @@
+module NoticeQueuesHelper
+end

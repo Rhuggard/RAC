@@ -1,4 +1,6 @@
 ThesisPOC::Application.routes.draw do
+  resources :notice_queues
+
   resources :policies
 
   resources :pobjects

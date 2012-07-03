@@ -1,0 +1,37 @@
+<%= form_for(@notice_queue) do |f| %>
+  <% if @notice_queue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice_queue.errors.count, "error") %> prohibited this notice_queue from being saved:</h2>
+
+      <ul>
+      <% @notice_queue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :action %><br />
+    <%= f.text_field :action %>
+  </div>
+  <div class="field">
+    <%= f.label :object_id %><br />
+    <%= f.number_field :object_id %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_field :message %>
+  </div>
+  <div class="field">
+    <%= f.label :request %><br />
+    <%= f.text_field :request %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

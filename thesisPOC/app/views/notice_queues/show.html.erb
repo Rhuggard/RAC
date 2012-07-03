@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @notice_queue.user_id %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @notice_queue.action %>
+</p>
+
+<p>
+  <b>Object:</b>
+  <%= @notice_queue.object_id %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @notice_queue.message %>
+</p>
+
+<p>
+  <b>Request:</b>
+  <%= @notice_queue.request %>
+</p>
+
+
+<%= link_to 'Edit', edit_notice_queue_path(@notice_queue) %> |
+<%= link_to 'Back', notice_queues_path %>
