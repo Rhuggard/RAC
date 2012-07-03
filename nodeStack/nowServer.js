@@ -19,11 +19,8 @@ everyone.now.sendRequest = function( target, pobject, message ){
   console.log("For object : " + pobject);
   console.log("Additional Info :" + message);
 
-  if(this.now.name == target){
-    console.log("target aquired");
-    this.now.requestStack(message);
-  }
-  //Add group name
+  //update all the clients as per the current request/response stack
+  everyone.now.updateRequests();
 }
 
 everyone.now.replyRequest = function(name, target, pobject, response, message){

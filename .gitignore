@@ -1,0 +1,4 @@
+
+# Ignore vi(m) swapfiles
+*.swp
+
