@@ -78,6 +78,9 @@ function openRequestForm(target,pobject){
   requestForm = document.getElementById('dropdown');
   divName = 'object' + pobject;
   requestForm.style.height = '0px';
+  //TODO: fix this when prototype is done
+  currentTarget = target;
+  currentObject = pobject;
   $('#'+divName).append(requestForm);
   doMove();
   $('#'+divName).focus();
@@ -87,6 +90,9 @@ function request()
 {
   dropDown = document.getElementById('dropdown'); // get the "foo" object
   dropDown.style.background = '#ED5314';
+  //TODO:fix this.
+  pobject = currentObject;
+  target = currentTarget;
   message = document.forms["frm1"]["message"].value;
   now.sendRequest(target,pobject,message);
   return false;
