@@ -17,8 +17,11 @@
 <script>
 
 var dropDown = null;
-
+var currentTarget = null;
+var currentObject = null;
+//Append request form to expanded div
 function appendForm(){
+/*
 $("#dropdown").append("<p>Extra Information:<br />\
 <form name=\"frm1\" action=\"\" onsubmit=\"return request()\">\
 <textarea rows = 5 cols=40 name=\"message\" wrap=virtual>\
@@ -28,8 +31,11 @@ $("#dropdown").append("<p>Extra Information:<br />\
 </form>\
 </div>\
 </p>");
+*/
+  document.getElementById('dropdownform').style.display = "block";
 }
 
+//Animate and open up a div
 function doMove() {
   offset = parseInt(dropDown.style.height)+10;
   dropDown.style.height = offset +'px'; //ugly
@@ -40,15 +46,13 @@ function doMove() {
   }
 }
 
+//setup values once the page is loaded
 function init() {
+  document.getElementById('dropdownform').style.display = "none";
   dropDown = document.getElementById('dropdown'); // get the "foo" object
-  dropDown.style.height = '0px'; 
-  dropDown.style.background = '#FFB92A';
-  doMove(); // start animating
-  setupMessageing();
 }
 
-function setupMessageing(){
+function setupRequesting(){
   now.receiveMessage = function(name, message){
     $("#messages").append("<br>" + name + ": " + message);
   }
@@ -57,42 +61,50 @@ function setupMessageing(){
     alert('request recieved!!');
     $("#messages").append("<br>" + "request: " + message);
   }
-}
-
-function setupRequests(){
-  now.receiveRequest = function(name,message){
-    $("#messages").append("<br>A request from " + name + ": " + message);
+ 
+  now.updateRequests = function(){
+    //Refresh 
+    $("#messages").append("<br>Updated messages");
   }
 }
 
 $(document).ready(function(){
   init();
   now.name = '<%= @user_name %>';  
-  setupMessageing();
-  setupRequests();
+  setupRequesting();
 });
+
+function openRequestForm(target,pobject){
+  requestForm = document.getElementById('dropdown');
+  divName = 'object' + pobject;
+  requestForm.style.height = '0px';
+  $('#'+divName).append(requestForm);
+  doMove();
+  $('#'+divName).focus();
+}
 
 function request()
 {
   dropDown = document.getElementById('dropdown'); // get the "foo" object
-  dropDown.style.background = '#00FF00';
-  now.distributeMessage('foooooo');
-  $("#dropdown").append("<p>" + 'REQUEST SENT' + "</p>");
-  alert("Welcome " + document.forms["frm1"]["message"].value + "!!");
+  dropDown.style.background = '#ED5314';
+  message = document.forms["frm1"]["message"].value;
+  now.sendRequest(target,pobject,message);
   return false;
 }
 
-function sendRequest(target, pobject){
-  //put up form and populate message
-  alert('woot');
-  message = 'hi there I need this for the project!';
-  now.sendRequest(target,pobject,message);
-}
 </script>
  
 <body> 
 <div id="messages"></div>
-<div id="dropdown">
+  <div id="dropdown">
+    <div id="dropdownform">
+      <form name="frm1" action="" onsubmit="return request()">
+        <textarea rows = 5 cols=40 name="message" wrap=virtual></textarea>
+        <br />
+        <input type="submit" value="Request" />
+      </form>
+    </div>
+  </div>
 </div>
 <% end %>
 <div id='action_bar'>
