@@ -29,7 +29,12 @@ everyone.now.replyRequest = function(name, target, pobject, response, message){
   console.log("To : " + target);
   console.log("For object : " + pobject);
   console.log("Additional Info :" + message);
+  
   //Reply
+  everyone.now.updateRequests();
 }
 
+everyone.now.serverLog = function(message){
+  console.log("Client: " + message);
+}
 
