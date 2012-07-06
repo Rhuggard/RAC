@@ -4,6 +4,8 @@ class PobjectsController < ApplicationController
   def index
     # Create a new notice queue
     @notice_queue = NoticeQueue.new
+    @userid = session[:user_id]
+    ActiveRecord::Base.logger.debug "session[:user_id] : #{session[:user_id]}"
     @pobjects = Pobject.all
     @pobjects.each do |pobject|
       if Pobject.check_permission(session[:user_id],'view',pobject.id)

@@ -5,7 +5,7 @@ class NoticeQueuesController < ApplicationController
     @notice_queues = NoticeQueue.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'notice_queue' }# index.html.erb
       format.json { render json: @notice_queues }
     end
   end
@@ -14,7 +14,7 @@ class NoticeQueuesController < ApplicationController
   # GET /notice_queues/1.json
   def show
     @notice_queue = NoticeQueue.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @notice_queue }

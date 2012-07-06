@@ -39,7 +39,7 @@ $("#dropdown").append("<p>Extra Information:<br />\
 function doMove() {
   offset = parseInt(dropDown.style.height)+10;
   dropDown.style.height = offset +'px'; //ugly
-  if(offset < 200){
+  if(offset < 500){
     setTimeout(doMove,5); // call doMove in 5msec
   } else {
     appendForm();
@@ -105,8 +105,8 @@ function request()
 </div>
 <div id="messages"></div>
   <div id="dropdown">
-  <%= render 'notice_queues/form' %>
     <div id="dropdownform">
+      <%= render 'notice_queues/requestForm' %>
       <form name="frm1" action="" onsubmit="return request()">
         <textarea rows = 5 cols=40 name="message" wrap=virtual></textarea>
         <br />

@@ -10,11 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <% if @user_id %>
   <div class="field">
     <%= f.label :user_id %><br />
     <%= f.number_field :user_id %>
   </div>
+  <% else %>
+    <p> Foo </p>
+  <% end %>
   <div class="field">
     <%= f.label :action %><br />
     <%= f.text_field :action %>
