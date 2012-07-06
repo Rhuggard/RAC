@@ -101,8 +101,11 @@ function request()
 </script>
  
 <body> 
+<div id="requests">
+</div>
 <div id="messages"></div>
   <div id="dropdown">
+  <%= render 'notice_queues/form' %>
     <div id="dropdownform">
       <form name="frm1" action="" onsubmit="return request()">
         <textarea rows = 5 cols=40 name="message" wrap=virtual></textarea>

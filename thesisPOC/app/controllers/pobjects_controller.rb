@@ -2,6 +2,8 @@ class PobjectsController < ApplicationController
   # GET /pobjects
   # GET /pobjects.json
   def index
+    # Create a new notice queue
+    @notice_queue = NoticeQueue.new
     @pobjects = Pobject.all
     @pobjects.each do |pobject|
       if Pobject.check_permission(session[:user_id],'view',pobject.id)
