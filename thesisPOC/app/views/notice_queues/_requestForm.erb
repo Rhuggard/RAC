@@ -12,27 +12,33 @@
   <% end %>
   <% if @user_id %>
   <div class="field">
+    <p> user id is there <%= @user_id %></p>
     <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.number_field :user_id, :value => @user_id %>
   </div>
   <% else %>
-    <p> Foo </p>
+   <div class="field">
+    <p> nothing </p>
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+   </div>
   <% end %>
   <div class="field">
     <%= f.label :action %><br />
-    <%= f.text_field :action %>
+    <%= f.text_field :action, :value => 'view' %>
   </div>
   <div class="field">
     <%= f.label :object_id %><br />
-    <%= f.number_field :object_id %>
+    <%= f.number_field :object_id, :value => pobject_id %>
   </div>
   <div class="field">
     <%= f.label :message %><br />
-    <%= f.text_field :message %>
+    <%= f.text_field :message,
+         :placeholder => 'Write any additional information here...' %>
   </div>
   <div class="field">
     <%= f.label :request %><br />
-    <%= f.text_field :request %>
+    <%= f.text_field :request, :value => 'true' %>
   </div>
   <div class="actions">
     <%= f.submit %>

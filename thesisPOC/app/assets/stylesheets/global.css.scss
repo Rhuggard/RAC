@@ -1,6 +1,17 @@
+$red: #ED5314;
+$orange: #FFB92A;
+$yellow: #FEEB51;
+$green: #9BCA3E;
+$blue: #3ABBC9;
+$gray: #E6E6E6;
+
 body {
   background-image: url("/assets/white_leather.png");
   height: 100%
+}
+
+p{
+    margin-left: 10px;
 }
 
 #title_bar {
@@ -10,8 +21,13 @@ text-align:center;
  }
 }
 
-#dropdown{
-  background:#FFB92A;
+.notice{
+  background: $orange;
+  border-style: outset;
+  border-width: 3px;
+  //This will differ in firefox and chrome
+  border-color: lighten($orange,20%);
+  padding: 10px;
 }
 
 #action_bar {

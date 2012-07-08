@@ -37,10 +37,10 @@ $("#dropdown").append("<p>Extra Information:<br />\
 
 //Animate and open up a div
 function doMove() {
-  offset = parseInt(dropDown.style.height)+10;
+  offset = parseInt(dropDown.style.height)+20;
   dropDown.style.height = offset +'px'; //ugly
-  if(offset < 500){
-    setTimeout(doMove,5); // call doMove in 5msec
+  if(offset < 350){
+    setTimeout(doMove,10); // call doMove in 5msec
   } else {
     appendForm();
   }
@@ -63,8 +63,6 @@ function setupRequesting(){
   }
  
   now.updateRequests = function(){
-    //Refresh 
-    $("#messages").append("<br>Updated messages");
   }
 }
 
@@ -77,12 +75,14 @@ $(document).ready(function(){
 function openRequestForm(target,pobject){
   requestForm = document.getElementById('dropdown');
   divName = 'object' + pobject;
+  document.getElementById('dropdownform').style.display = "none";
   requestForm.style.height = '0px';
   //TODO: fix this when prototype is done
   currentTarget = target;
   currentObject = pobject;
   $('#'+divName).append(requestForm);
   doMove();
+  //TODO: focus correctly on the form
   $('#'+divName).focus();
 }
 
@@ -102,16 +102,18 @@ function request()
  
 <body> 
 <div id="requests">
+<%  @notices.each do |notice| %>
+  <div class="notice" id="request">
+    <p> Request from: <%= notice.user_id %> </p>
+    <p> For object: <%= notice.object_id %> </p>
+    <p> With additional info: <%= notice.message %></p>
+  </div>
+<% end %>
 </div>
 <div id="messages"></div>
-  <div id="dropdown">
+  <div class="notice" id="dropdown">
     <div id="dropdownform">
-      <%= render 'notice_queues/requestForm' %>
-      <form name="frm1" action="" onsubmit="return request()">
-        <textarea rows = 5 cols=40 name="message" wrap=virtual></textarea>
-        <br />
-        <input type="submit" value="Request" />
-      </form>
+      <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => '10' } %>
     </div>
   </div>
 </div>
