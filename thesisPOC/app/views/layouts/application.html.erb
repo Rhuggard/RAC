@@ -102,7 +102,7 @@ function request()
  
 <body> 
 <div id="requests">
-<%  @notices.each do |notice| %>
+<% @my_notices.each do |notice| %>
   <div class="notice" id="request">
     <p> Request from: <%= notice.user_id %> </p>
     <p> For object: <%= notice.object_id %> </p>
