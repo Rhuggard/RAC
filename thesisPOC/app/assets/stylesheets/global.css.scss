@@ -22,11 +22,12 @@ text-align:center;
 }
 
 .notice{
-  background: $orange;
+  $noticeColor: $orange;
+  background: $noticeColor;
   border-style: outset;
   border-width: 3px;
   //This will differ in firefox and chrome
-  border-color: lighten($orange,20%);
+  border-color: lighten($noticeColor,20%);
   padding: 10px;
 }
 

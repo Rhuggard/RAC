@@ -91,14 +91,11 @@ function request()
     <p> Request from: <%= notice.user_id %> </p>
     <p> For object: <%= notice.object_id %> </p>
     <p> With additional info: <%= notice.message %></p>
+          <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => notice.object_id, :request => false} %>
   </div>
 <% end %>
 </div>
 <div id="messages"></div>
-  <div class="notice" id="dropdown">
-    <div id="dropdownform">
-    </div>
-  </div>
 </div>
 <% end %>
 <div id='action_bar'>

@@ -1,3 +1,4 @@
+<% if @notice_queue %>
 <%= form_for(@notice_queue) do |f| %>
   <% if @notice_queue.errors.any? %>
     <div id="error_explanation">
@@ -10,19 +11,10 @@
       </ul>
     </div>
   <% end %>
-  <% if @user_id %>
   <div class="field">
-    <p> user id is there <%= @user_id %></p>
     <%= f.label :user_id %><br />
     <%= f.number_field :user_id, :value => @user_id %>
   </div>
-  <% else %>
-   <div class="field">
-    <p> nothing </p>
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-   </div>
-  <% end %>
   <div class="field">
     <%= f.label :action %><br />
     <%= f.text_field :action, :value => 'view' %>
@@ -38,9 +30,14 @@
   </div>
   <div class="field">
     <%= f.label :request %><br />
-    <%= f.text_field :request, :value => 'true' %>
+    <% if request == true %>
+      <%= f.text_field :request, :value => 'true' %>
+    <% else %>
+      <%= f.text_field :request, :value => 'false' %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
 <% end %>
