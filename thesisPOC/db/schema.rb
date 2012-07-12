@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703162324) do
+ActiveRecord::Schema.define(:version => 20120712175924) do
 
   create_table "notice_queues", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20120703162324) do
     t.string   "request"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sender_id"
+    t.string   "response"
   end
 
   create_table "pobjects", :force => true do |t|

@@ -17,21 +17,28 @@ class ApplicationController < ActionController::Base
     ActiveRecord::Base.logger.debug "*           Get My Notices          *"
     ActiveRecord::Base.logger.debug "*************************************"
     ActiveRecord::Base.logger.debug "Pobject: #{Pobject}"
-    notices.each do |notice|
-    ActiveRecord::Base.logger.debug "Notice : #{notice}"
-    #TODO: DOh, object_id is used internally, need to refactor to pobject_id or the next
-    # line will send back the 'object_id' variable rather than the attribute!
-    #ActiveRecord::Base.logger.debug "Notice object_id: #{notice.object_id}"
-    ActiveRecord::Base.logger.debug "Notice object_id: #{notice.attributes['object_id']}"
-    #TODO: clean this up
-    #TODO: ensure that it is safe to use user names as opposed to unique ids for this and if not change
-    ActiveRecord::Base.logger.debug "owner = #{Pobject.find_by_id(notice.object_id).owner}"
-    ActiveRecord::Base.logger.debug "session_id = #{User.find_by_id(session[:user_id]).name}"
-      if Pobject.find_by_id(notice.object_id).owner == User.find_by_id(session[:user_id]).name
-        my_notices.push notice
-        ActiveRecord::Base.logger.debug "***** pushing : #{notice}"
-      else
-        ActiveRecord::Base.logger.debug "***** ignoring: #{notice}"
+   
+    user = User.find_by_id(session[:user_id])
+    #If session gets mussed up (should only happen in dev) this could be nil
+    if user.nil?
+    ActiveRecord::Base.logger.debug "Warning: User is nil this session is in the twilight zone"
+    else
+      notices.each do |notice|
+      ActiveRecord::Base.logger.debug "Notice : #{notice}"
+      #TODO: DOh, object_id is used internally, need to refactor to pobject_id or the next
+      # line will send back the 'object_id' variable rather than the attribute!
+      #ActiveRecord::Base.logger.debug "Notice object_id: #{notice.object_id}"
+      ActiveRecord::Base.logger.debug "Notice object_id: #{notice.attributes['object_id']}"
+      #TODO: clean this up
+      #TODO: ensure that it is safe to use user names as opposed to unique ids for this and if not change
+      ActiveRecord::Base.logger.debug "owner = #{Pobject.find_by_id(notice.object_id).owner}"
+      ActiveRecord::Base.logger.debug "session_id = #{user.name}"
+        if Pobject.find_by_id(notice.object_id).owner == user.name
+          my_notices.push notice
+          ActiveRecord::Base.logger.debug "***** pushing : #{notice}"
+        else
+          ActiveRecord::Base.logger.debug "***** ignoring: #{notice}"
+        end
       end
     end
     my_notices
