@@ -16,40 +16,23 @@
 
 <script>
 
-var dropDown = null;
 var currentTarget = null;
 var currentObject = null;
-//Append request form to expanded div
-function appendForm(){
-/*
-$("#dropdown").append("<p>Extra Information:<br />\
-<form name=\"frm1\" action=\"\" onsubmit=\"return request()\">\
-<textarea rows = 5 cols=40 name=\"message\" wrap=virtual>\
-</textarea>\
-<br />\
-<input type=\"submit\" value=\"Request\" />\
-</form>\
-</div>\
-</p>");
-*/
-  document.getElementById('dropdownform').style.display = "block";
-}
 
 //Animate and open up a div
-function doMove() {
-  offset = parseInt(dropDown.style.height)+20;
-  dropDown.style.height = offset +'px'; //ugly
+doMove = function(divRef,innerDivName) {
+  offset = parseInt(divRef.style.height)+10;
+  divRef.style.height = offset +'px'; //ugly
   if(offset < 350){
-    setTimeout(doMove,10); // call doMove in 5msec
+    setTimeout(function(){doMove(divRef,innerDivName)},10); // call doMove in 5msec
   } else {
-    appendForm();
+    document.getElementById(innerDivName).style.display = "block";
   }
 }
 
 //setup values once the page is loaded
 function init() {
   document.getElementById('dropdownform').style.display = "none";
-  dropDown = document.getElementById('dropdown'); // get the "foo" object
 }
 
 function setupRequesting(){
@@ -73,15 +56,16 @@ $(document).ready(function(){
 });
 
 function openRequestForm(target,pobject){
-  requestForm = document.getElementById('dropdown');
   divName = 'object' + pobject;
-  document.getElementById('dropdownform').style.display = "none";
+  innerDivName = 'innerForm' + pobject;
+  requestForm = document.getElementById(divName);
+  requestForm.style.display = "block";
+  document.getElementById(innerDivName).style.display = "none";
   requestForm.style.height = '0px';
   //TODO: fix this when prototype is done
   currentTarget = target;
   currentObject = pobject;
-  $('#'+divName).append(requestForm);
-  doMove();
+  doMove(requestForm,innerDivName);
   //TODO: focus correctly on the form
   $('#'+divName).focus();
 }
@@ -113,7 +97,6 @@ function request()
 <div id="messages"></div>
   <div class="notice" id="dropdown">
     <div id="dropdownform">
-      <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => '10' } %>
     </div>
   </div>
 </div>

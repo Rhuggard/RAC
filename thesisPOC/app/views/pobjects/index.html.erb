@@ -23,7 +23,10 @@
   </tr>
   <tr>
      <td colspan ="6">
-        <div id='object<%=pobject.id%>'>
+        <div class='notice' id='object<%=pobject.id%>' style="display:none">
+          <div id='innerForm<%=pobject.id%>' style="display:none">
+          <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => pobject.id } %>
+          </div>
         </div>
      </td>
   </tr>
