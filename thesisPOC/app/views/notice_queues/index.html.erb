@@ -2,11 +2,13 @@
 
 <table>
   <tr>
+    <th>Sender</th>
     <th>User</th>
     <th>Action</th>
     <th>Object</th>
     <th>Message</th>
     <th>Request</th>
+    <th>Response</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +16,13 @@
 
 <% @notice_queues.each do |notice_queue| %>
   <tr>
+    <td><%= notice_queue.sender_id %></td>
     <td><%= notice_queue.user_id %></td>
     <td><%= notice_queue.action %></td>
     <td><%= notice_queue.object_id %></td>
     <td><%= notice_queue.message %></td>
     <td><%= notice_queue.request %></td>
+    <td><%= notice_queue.response %></td>
     <td><%= link_to 'Show', notice_queue %></td>
     <td><%= link_to 'Edit', edit_notice_queue_path(notice_queue) %></td>
     <td><%= link_to 'Destroy', notice_queue, confirm: 'Are you sure?', method: :delete %></td>

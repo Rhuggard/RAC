@@ -6,10 +6,30 @@ class ApplicationController < ActionController::Base
  
   def loadQueue
     #Notices: Allows all views to show their particular queue
-    #TODO: make it context sensetive: perhaps NoticeQueue.find(session[:user_id])
     @notices = NoticeQueue.all
     @my_notices = get_my_notices(@notices)
+    @my_replies = get_my_replies(@notices)
   end
+
+  def get_my_replies(notices)
+    my_replies = Array.new
+  
+    user = User.find_by_id(session[:user_id])
+    unless user.nil?
+      notices.each do |notice|
+        #TODO: fix identifying users by name
+        # The subject ID will be the sender and so if we are the subject ID and there has been a response then it is for us. 
+        if notice.user_id == user.id && !(notice.response.blank?)
+          my_replies.push notice
+          ActiveRecord::Base.logger.debug "***** pushing reply : #{notice}"
+        else
+          ActiveRecord::Base.logger.debug "***** ignoring reply: #{notice}"
+        end
+      end
+    end
+    my_replies
+  end
+
 
   def get_my_notices(notices)
     my_notices = Array.new
@@ -47,6 +67,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     if User.find_by_id(session[:user_id])
+      @user_id = session[:user_id]
       @user_name = User.find_by_id(session[:user_id]).name
     else
       redirect_to login_url, notice: 'Please log in'

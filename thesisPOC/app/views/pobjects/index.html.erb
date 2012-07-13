@@ -25,7 +25,7 @@
      <td colspan ="6">
         <div class='notice' id='object<%=pobject.id%>' style="display:none">
           <div id='innerForm<%=pobject.id%>' style="display:none">
-          <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => pobject.id, :request => true } %>
+          <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => pobject.id, :request => true, :subject => @user_id } %>
           </div>
         </div>
      </td>

@@ -21,14 +21,21 @@ text-align:center;
  }
 }
 
-.notice{
-  $noticeColor: $orange;
+@mixin borderBox($noticeColor){
   background: $noticeColor;
   border-style: outset;
   border-width: 3px;
   //This will differ in firefox and chrome
   border-color: lighten($noticeColor,20%);
   padding: 10px;
+}
+
+.notice{
+  @include borderBox($orange);
+}
+
+.reply{
+  @include borderBox($red);
 }
 
 #action_bar {
