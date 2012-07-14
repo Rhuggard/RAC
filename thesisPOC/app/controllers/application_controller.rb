@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
 
   def get_my_notices(notices)
     my_notices = Array.new
+    #TODO: fix logging
     ActiveRecord::Base.logger.debug "*************************************"
     ActiveRecord::Base.logger.debug "*           Get My Notices          *"
     ActiveRecord::Base.logger.debug "*************************************"

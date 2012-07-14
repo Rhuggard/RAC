@@ -23,7 +23,7 @@ var currentObject = null;
 doMove = function(divRef,innerDivName) {
   offset = parseInt(divRef.style.height)+10;
   divRef.style.height = offset +'px'; //ugly
-  if(offset < 350){
+  if(offset < 80){
     setTimeout(function(){doMove(divRef,innerDivName)},10); // call doMove in 5msec
   } else {
     document.getElementById(innerDivName).style.display = "block";
@@ -94,20 +94,22 @@ function request()
 <div id="requests">
 <% @my_notices.each do |notice| %>
   <div class="notice" id="request">
-    <p> Request from: <%= notice.user_id %> </p>
-    <p> For object: <%= notice.object_id %> </p>
-    <p> With additional info: <%= notice.message %></p>
+    <p> Reply from user:      <%= notice.sender_name %> </p>
+    <p> For action:           <%= notice.action %>      </p>
+    <p> For object:           <%= notice.object_name %> </p>
+    <p> With additional info: <%= notice.message %>     </p>
           <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => notice.object_id, :request => false, :subject => notice.user_id} %>
   </div>
 <% end %>
 </div>
 <div id="replies">
 <% @my_replies.each do |notice| %>
-  <div class="reply" id="request">
+  <div class="reply-<%= notice.response == 'yes' ? 'yes' : 'no' %>" id="request">
     <p> Reply from user:      <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
     <p> For object:           <%= notice.object_name %> </p>
     <p> With additional info: <%= notice.message %>     </p>
+    <p> Response:             <%= notice.response %>    </p>
   </div>
 <% end %>
 </div>

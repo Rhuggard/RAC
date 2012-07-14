@@ -11,21 +11,21 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="hidden-field">
     <%= f.label :sender_id %><br />
     <%= f.number_field :sender_id, :value => @user_id %>
   </div>
   <% if subject %>
-  <div class="field">
+  <div class="hidden-field">
     <%= f.label :user_id %><br />
     <%= f.number_field :user_id, :value => subject %>
   </div>
   <% end %>
-  <div class="field">
+  <div class="hidden-field">
     <%= f.label :action %><br />
     <%= f.text_field :action, :value => 'view' %>
   </div>
-  <div class="field">
+  <div class="hidden-field">
     <%= f.label :object_id %><br />
     <%= f.number_field :object_id, :value => pobject_id %>
   </div>
@@ -34,7 +34,7 @@
     <%= f.text_field :message,
          :placeholder => 'Write any additional information here...' %>
   </div>
-  <div class="field">
+  <div class="hidden-field">
     <%= f.label :request %><br />
     <% if request == true %>
       <%= f.text_field :request, :value => 'true' %>
@@ -42,9 +42,15 @@
       <%= f.text_field :request, :value => 'false' %>
     <% end %>
   </div>
-  <div class="field">
-    <%= f.label :response %><br />
-    <%= f.text_field :response, :value => 'yes'%>
+  <% if response == false %>
+    <div class="hidden-field">
+      <%= f.label :response %><br />
+      <%= f.text_field :response, :value => ''%>
+    <% else %>
+    <div class="field">
+      <%= f.label :response %><br />
+      <%= f.text_field :response, :value => 'yes'%>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -30,12 +30,22 @@ text-align:center;
   padding: 10px;
 }
 
+
+.hidden-field{
+  display: none;
+}
+
+
 .notice{
   @include borderBox($orange);
 }
 
-.reply{
+.reply-no{
   @include borderBox($red);
+}
+
+.reply-yes{
+  @include borderBox($green);
 }
 
 #action_bar {

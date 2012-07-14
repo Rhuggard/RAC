@@ -3,7 +3,11 @@ class NoticeQueue < ActiveRecord::Base
   
   public
   def sender_name
-    User.find(self.sender_id).name
+    if self.sender_id
+      User.find(self.sender_id).name
+    else
+      'none'
+    end
   end
 
   def object_name
