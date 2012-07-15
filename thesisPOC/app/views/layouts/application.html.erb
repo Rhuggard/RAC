@@ -92,7 +92,7 @@ function request()
 <% end %>
 </div>
 <div id="requests">
-<% @my_notices.each do |notice| %>
+<% @my_notices.reverse.each do |notice| %>
   <div class="notice" id="request">
     <p> Request from user:      <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
@@ -103,7 +103,7 @@ function request()
 <% end %>
 </div>
 <div id="replies">
-<% @my_replies.each do |notice| %>
+<% @my_replies.reverse.each do |notice| %>
   <div class="reply-<%= notice.response == 'yes' ? 'yes' : 'no' %>" id="request">
     <p> Reply from user:      <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
