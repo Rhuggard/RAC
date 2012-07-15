@@ -2,15 +2,15 @@
 
 <table>
   <tr>
-    <th>Uri</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>File</th>
+    <th>Description</th>
+    <th>Owner</th>
+    <th colspan ="3">Actions</th>
   </tr>
 
 <% @pobjects.each do |pobject| %>
   <tr>
-    <td><%= image_tag pobject.avatar.url(:thumb) %></td>
+    <td>File-<%= pobject.id %>: <%= pobject.avatar_file_name %></br><%= image_tag pobject.avatar.url(:thumb) %></td>
     <td><%= pobject.description %></td>
     <td><%= pobject.owner %>
     <% if pobject.access %>

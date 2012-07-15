@@ -11,7 +11,7 @@ class NoticeQueue < ActiveRecord::Base
   end
 
   def object_name
-    self.object_id.to_s + '-' + Pobject.find(self.object_id).avatar_file_name
+    'File-' + self.object_id.to_s + ':' + Pobject.find(self.object_id).avatar_file_name
   end
   private
   def update_permissions
