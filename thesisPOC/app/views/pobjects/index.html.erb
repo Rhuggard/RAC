@@ -11,7 +11,7 @@
 <% @pobjects.each do |pobject| %>
   <tr>
     <td><%= image_tag pobject.avatar.url(:thumb) %></td>
-    <td><%= pobject.uri %></td>
+    <td><%= pobject.description %></td>
     <td><%= pobject.owner %>
     <% if pobject.access %>
     <td><%= link_to 'Show', pobject %></td>

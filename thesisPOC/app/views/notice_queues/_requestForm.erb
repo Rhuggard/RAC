@@ -43,11 +43,11 @@
     <% end %>
   </div>
   <% if response == false %>
-    <div class="hidden-field">
+  <div class="hidden-field">
       <%= f.label :response %><br />
       <%= f.text_field :response, :value => ''%>
     <% else %>
-    <div class="field">
+  <div class="field">
       <%= f.label :response %><br />
       <%= f.text_field :response, :value => 'yes'%>
     <% end %>

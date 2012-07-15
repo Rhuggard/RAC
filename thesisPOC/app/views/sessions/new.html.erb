@@ -2,7 +2,7 @@
 <% if flash[:notice] %>
 <p id="notice"><%= flash[:notice] %></p>
 <% end %>
-<%= form_tag do %>
+<%= form_tag "/login" do %>
 <fieldset>
 <legend>Please Log In</legend>
 <div>

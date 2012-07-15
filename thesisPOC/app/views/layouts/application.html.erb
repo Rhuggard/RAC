@@ -94,7 +94,7 @@ function request()
 <div id="requests">
 <% @my_notices.each do |notice| %>
   <div class="notice" id="request">
-    <p> Reply from user:      <%= notice.sender_name %> </p>
+    <p> Request from user:      <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
     <p> For object:           <%= notice.object_name %> </p>
     <p> With additional info: <%= notice.message %>     </p>

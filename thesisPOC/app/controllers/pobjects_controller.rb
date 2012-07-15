@@ -54,7 +54,7 @@ class PobjectsController < ApplicationController
     @pobject.owner = @user_name
     respond_to do |format|
       if @pobject.save
-        format.html { redirect_to @pobject, notice: 'Pobject was successfully created.' }
+        format.html { redirect_to pobjects_url, notice: 'Pobject was successfully created.' }
         format.json { render json: @pobject, status: :created, location: @pobject }
       else
         format.html { render action: "new" }

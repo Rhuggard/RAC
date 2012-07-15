@@ -44,7 +44,7 @@ class NoticeQueuesController < ApplicationController
 
     respond_to do |format|
       if @notice_queue.save
-        format.html { redirect_to @notice_queue, notice: 'Notice queue was successfully created.' }
+        format.html { redirect_to pobjects_url, notice: 'Notice queue was successfully created.' }
         format.json { render json: @notice_queue, status: :created, location: @notice_queue }
       else
         format.html { render action: "new" }

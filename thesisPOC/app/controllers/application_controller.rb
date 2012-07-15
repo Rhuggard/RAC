@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       #TODO: ensure that it is safe to use user names as opposed to unique ids for this and if not change
       ActiveRecord::Base.logger.debug "owner = #{Pobject.find_by_id(notice.object_id).owner}"
       ActiveRecord::Base.logger.debug "session_id = #{user.name}"
-        if Pobject.find_by_id(notice.object_id).owner == user.name
+        if Pobject.find_by_id(notice.object_id).owner == user.name && notice.request == 'true'
           my_notices.push notice
           ActiveRecord::Base.logger.debug "***** pushing : #{notice}"
         else
