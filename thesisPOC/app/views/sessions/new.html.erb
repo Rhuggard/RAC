@@ -2,21 +2,5 @@
 <% if flash[:notice] %>
 <p id="notice"><%= flash[:notice] %></p>
 <% end %>
-<%= form_tag "/login" do %>
-<fieldset>
-<legend>Please Log In</legend>
-<div>
-<%= label_tag :name, 'Name:' %>
-<%= text_field_tag :name, params[:name] %>
+<%= render 'login' %>
 </div>
-<div>
-<%= label_tag :password, 'Password:' %>
-<%= password_field_tag :password, params[:password] %>
-</div>
-<div>
-<%= submit_tag "Login" %>
-</div>
-</fieldset>
-<% end %>
-</div>
-

@@ -6,3 +6,12 @@
  *= require_tree . 
 */
 
+#left-landing{
+display: inline;
+float: left;
+}
+
+#right-landing{
+display: inline;
+float: right;
+}
