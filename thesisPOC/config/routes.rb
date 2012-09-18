@@ -3,7 +3,7 @@ ThesisPOC::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  
+
   root :to => 'landing_page#index', :as => 'root'
 
   resources :notice_queues

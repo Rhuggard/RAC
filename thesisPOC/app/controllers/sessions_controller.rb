@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to pobjects_url
     else
-      redirect_to login_url, notice: "Invalid Username or Password"
+      redirect_to root_url, notice: "Invalid Username or Password"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_url, notice: "Logged Out"
+    redirect_to root_url, notice: "Logged Out"
   end
-
 end
+

@@ -71,7 +71,8 @@ class ApplicationController < ActionController::Base
       @user_id = session[:user_id]
       @user_name = User.find_by_id(session[:user_id]).name
     else
-      redirect_to login_url, notice: 'Please log in'
+      #The user does not have access, send them back to the root/login page
+      redirect_to root_url, notice: 'Please log in'
     end
   end
 
