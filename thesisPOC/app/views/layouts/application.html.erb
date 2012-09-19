@@ -70,6 +70,13 @@ function openRequestForm(target,pobject){
   $('#'+divName).focus();
 }
 
+
+function closeNotice(requestID){
+  divID = 'request-' + requestID;
+  noticeDiv = document.getElementById(divID);
+  noticeDiv.style.display = 'none';
+}
+
 function request()
 {
   dropDown = document.getElementById('dropdown'); // get the "foo" object
@@ -93,8 +100,11 @@ function request()
 </div>
 <div id="requests">
 <% @my_notices.reverse.each do |notice| %>
-  <div class="notice" id="request">
-    <p> Request from user:      <%= notice.sender_name %> </p>
+  <div class="notice" id="request-<%=notice.id%>">
+    <div class="close-button">
+      <a class ="close-button" href="javascript:void(0)" onclick="closeNotice(<%= notice.id %>)"></a> 
+    </div>
+    <p> Request from user:    <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
     <p> For object:           <%= notice.object_name %> </p>
     <p> With additional info: <%= notice.message %>     </p>
@@ -105,6 +115,7 @@ function request()
 <div id="replies">
 <% @my_replies.reverse.each do |notice| %>
   <div class="reply-<%= notice.response == 'yes' ? 'yes' : 'no' %>" id="request">
+    
     <p> Reply from user:      <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
     <p> For object:           <%= notice.object_name %> </p>

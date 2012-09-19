@@ -35,6 +35,21 @@ text-align:center;
   display: none;
 }
 
+.close-button {
+  float: right;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.close-button a, a:visited {
+  background-image: url("Close.png");
+}
+
+.close-button a:hover {
+  background: none;
+  background-image: url("CloseGray.png");
+}
 
 .notice{
   @include borderBox($orange);
