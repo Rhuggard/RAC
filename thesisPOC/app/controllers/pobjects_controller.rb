@@ -1,4 +1,6 @@
 class PobjectsController < ApplicationController
+  layout "notices"
+
   # GET /pobjects
   # GET /pobjects.json
   def index

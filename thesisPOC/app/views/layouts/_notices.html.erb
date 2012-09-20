@@ -1,0 +1,122 @@
+<% if session[:user_id] %>
+  <div id='message_bar'>
+  <script src="http://localhost:8080/nowjs/now.js"></script>
+
+  <script>
+
+  var currentTarget = null;
+  var currentObject = null;
+
+  //Animate and open up a div
+  doMove = function(divRef,innerDivName) {
+    offset = parseInt(divRef.style.height)+10;
+    divRef.style.height = offset +'px'; //ugly
+    if(offset < 80){
+      setTimeout(function(){doMove(divRef,innerDivName)},10); // call doMove in 5msec
+    } else {
+      document.getElementById(innerDivName).style.display = "block";
+    }
+  }
+
+  //setup values once the page is loaded
+  function init() {
+    document.getElementById('dropdownform').style.display = "none";
+  }
+
+  function setupRequesting(){
+    now.receiveMessage = function(name, message){
+      $("#messages").append("<br>" + name + ": " + message);
+    }
+   
+    now.requestStack = function(message){
+      alert('request recieved!!');
+      $("#messages").append("<br>" + "request: " + message);
+    }
+   
+    now.updateRequests = function(){
+    }
+  }
+
+  $(document).ready(function(){
+    init();
+    now.name = '<%= @user_name %>';  
+    setupRequesting();
+  });
+
+  function openRequestForm(target,pobject){
+    divName = 'object' + pobject;
+    innerDivName = 'innerForm' + pobject;
+    requestForm = document.getElementById(divName);
+    requestForm.style.display = "block";
+    document.getElementById(innerDivName).style.display = "none";
+    requestForm.style.height = '0px';
+    //TODO: fix this when prototype is done
+    currentTarget = target;
+    currentObject = pobject;
+    doMove(requestForm,innerDivName);
+    //TODO: focus correctly on the form
+    $('#'+divName).focus();
+  }
+
+  function closeNotice(requestID){
+    divID = 'request-' + requestID;
+    noticeDiv = document.getElementById(divID);
+    noticeDiv.style.display = 'none';
+  }
+
+  function request()
+  {
+    dropDown = document.getElementById('dropdown'); // get the "foo" object
+    dropDown.style.background = '#ED5314';
+    //TODO:fix this.
+    pobject = currentObject;
+    target = currentTarget;
+    message = document.forms["frm1"]["message"].value;
+    now.sendRequest(target,pobject,message);
+    return false;
+  }
+
+  </script>
+   
+  <div id='action_bar'>
+  <% if session[:user_id] %>
+  <p> Welcome <%= @user_name %>. You are currently logged in.</p>
+  <%= button_to 'Logout', logout_path, method: :delete %>
+  </div>
+  <div id="requests">
+  <% @my_notices.reverse.each do |notice| %>
+    <div class="notice" id="request-<%=notice.id%>">
+      <div class="close-button">
+        <a class ="close-button" href="javascript:void(0)" onclick="closeNotice(<%= notice.id %>)"></a> 
+      </div>
+      <%= button_to "Close", archive_notice_queue_path(notice) %>
+      <p> Request from user:    <%= notice.sender_name %> </p>
+      <p> For action:           <%= notice.action %>      </p>
+      <p> For object:           <%= notice.object_name %> </p>
+      <p> With additional info: <%= notice.message %>     </p>
+      <p> Archived:             <%= notice.archived %>    </p>
+            <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => notice.object_id, :request => false, :subject => notice.user_id} %>
+    </div>
+  <% end %>
+  </div>
+  <div id="replies">
+  <% @my_replies.reverse.each do |notice| %>
+    <div class="reply-<%= notice.response == 'yes' ? 'yes' : 'no' %>" id="request">
+      
+      <p> Reply from user:      <%= notice.sender_name %> </p>
+      <p> For action:           <%= notice.action %>      </p>
+      <p> For object:           <%= notice.object_name %> </p>
+      <p> With additional info: <%= notice.message %>     </p>
+      <p> Response:             <%= notice.response %>    </p>
+    </div>
+  <% end %>
+  </div>
+  <div id="messages"></div>
+  </div>
+  <% end %>
+<% end %>
+
+<%= yield %>
+
+
+

@@ -5,7 +5,7 @@ class NoticeQueuesController < ApplicationController
     @notice_queues = NoticeQueue.all
 
     respond_to do |format|
-      format.html { render layout: 'notice_queue' }# index.html.erb
+      format.html # index.html.erb
       format.json { render json: @notice_queues }
     end
   end
@@ -77,7 +77,7 @@ class NoticeQueuesController < ApplicationController
     @notice_queue.save
 
     respond_to do |format|
-      format.html { redirect_to notice_queues_url }
+      format.html { redirect_to pobjects_url }
       format.json { head :ok }
     end
   end

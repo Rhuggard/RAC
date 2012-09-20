@@ -9,6 +9,7 @@
     <th>Message</th>
     <th>Request</th>
     <th>Response</th>
+    <th>Archived</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,6 +24,7 @@
     <td><%= notice_queue.message %></td>
     <td><%= notice_queue.request %></td>
     <td><%= notice_queue.response %></td>
+    <td><%= notice_queue.archived %></td>
     <td><%= link_to 'Show', notice_queue %></td>
     <td><%= link_to 'Edit', edit_notice_queue_path(notice_queue) %></td>
     <td><%= link_to 'Destroy', notice_queue, confirm: 'Are you sure?', method: :delete %></td>

@@ -25,6 +25,10 @@
   <%= @notice_queue.request %>
 </p>
 
+<p>
+  <b>Archived:</b>
+  <%= @notice_queue.archived %>
+</p>
 
 <%= link_to 'Edit', edit_notice_queue_path(@notice_queue) %> |
 <%= link_to 'Back', notice_queues_path %>
