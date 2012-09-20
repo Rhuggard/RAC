@@ -7,6 +7,7 @@ ThesisPOC::Application.routes.draw do
   root :to => 'landing_page#index', :as => 'root'
 
   resources :notice_queues
+  post '/notice_queues/archive/:id' => 'notice_queues#archive', :as => 'archive_notice_queue'
 
   resources :policies
 

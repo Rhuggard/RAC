@@ -31,6 +31,18 @@ class PobjectsController < ApplicationController
     end
   end
 
+  # DELETE /pobjects/1
+  # DELETE /pobjects/1.json
+  def show
+    @pobject = Pobject.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @pobject }
+    end
+  end
+
+
   # GET /pobjects/new
   # GET /pobjects/new.json
   def new

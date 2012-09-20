@@ -69,6 +69,20 @@ class NoticeQueuesController < ApplicationController
     end
   end
 
+  # GET /notice_queues/archive/1
+  # GET /notice_queues/archive/1.json
+  def archive
+    @notice_queue = NoticeQueue.find(params[:id])
+    @notice_queue.archived = true
+    @notice_queue.save
+
+    respond_to do |format|
+      format.html { redirect_to notice_queues_url }
+      format.json { head :ok }
+    end
+  end
+
+
   # DELETE /notice_queues/1
   # DELETE /notice_queues/1.json
   def destroy

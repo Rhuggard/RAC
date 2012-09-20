@@ -104,10 +104,12 @@ function request()
     <div class="close-button">
       <a class ="close-button" href="javascript:void(0)" onclick="closeNotice(<%= notice.id %>)"></a> 
     </div>
+    <%= button_to "Close", archive_notice_queue_path(notice) %>
     <p> Request from user:    <%= notice.sender_name %> </p>
     <p> For action:           <%= notice.action %>      </p>
     <p> For object:           <%= notice.object_name %> </p>
     <p> With additional info: <%= notice.message %>     </p>
+    <p> Archived:             <%= notice.archived %>    </p>
           <%= render :partial => 'notice_queues/requestForm', :locals => {:pobject_id => notice.object_id, :request => false, :subject => notice.user_id} %>
   </div>
 <% end %>
