@@ -1,9 +1,15 @@
+console.log("Launching Server");
+
 var server = require('http').createServer(function(req, res){
 });
 server.listen(8080);
 
+console.log("Initializing nowjs");
+
 var nowjs = require("now");
 var everyone = nowjs.initialize(server);
+
+console.log("Begin Listening");
 
 everyone.now.distributeMessage = function(message){
   console.log("");

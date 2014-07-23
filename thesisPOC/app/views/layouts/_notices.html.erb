@@ -34,11 +34,15 @@
     }
    
     now.updateRequests = function(){
+      alert('called now.updateRequests');
     }
   }
 
   $(document).ready(function(){
-    init();
+
+    alert("B");
+    now.serverLog("TEST DOCREADY");
+    alert("X");
     now.name = '<%= @user_name %>';  
     setupRequesting();
   });
